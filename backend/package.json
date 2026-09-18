@@ -1,0 +1,10 @@
+{
+  "name": "farmbridge-backend",
+  "version": "1.0.0",
+  "description": "FarmBridge - AI-Powered Market Linkage & Price Discovery Platform (SIH26132)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {}
+}

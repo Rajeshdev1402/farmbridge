@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FarmBridge — Market Linkage & Price Discovery</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🌾 FarmBridge</div>
+    <p class="tagline">Connecting Farmers to Better Prices, Better Buyers & Better Decisions</p>
+    <select id="langSelect" class="lang-select" title="Regional language (display only in prototype)">
+      <option value="en">English</option>
+      <option value="hi">हिंदी</option>
+      <option value="mr">मराठी</option>
+    </select>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="farmer">Farmer</button>
+    <button class="tab-btn" data-tab="marketplace">Marketplace (Buyer)</button>
+  </nav>
+
+  <main>
+    <!-- FARMER FLOW -->
+    <section id="farmer" class="tab-panel active">
+      <div class="card">
+        <h2>1. Check Price & Forecast</h2>
+        <div class="form-row">
+          <label>Crop
+            <select id="cropSelect"></select>
+          </label>
+          <button id="checkPricesBtn" class="btn-primary">Get Live Prices</button>
+        </div>
+        <div id="priceResults" class="results"></div>
+      </div>
+
+      <div class="card">
+        <h2>2. List Your Produce</h2>
+        <form id="listingForm" class="form-grid">
+          <label>Your Name
+            <input type="text" id="farmerName" required placeholder="e.g. Ramesh Patil" />
+          </label>
+          <label>Crop
+            <select id="listingCrop"></select>
+          </label>
+          <label>Quantity (quintal)
+            <input type="number" id="quantity" min="1" required />
+          </label>
+          <label>Asking Price (₹/quintal)
+            <input type="number" id="askingPrice" min="1" required />
+          </label>
+          <label>Location
+            <input type="text" id="location" placeholder="e.g. Nashik, MH" />
+          </label>
+          <button type="submit" class="btn-primary">List on Marketplace</button>
+        </form>
+        <div id="listingMsg" class="msg"></div>
+      </div>
+    </section>
+
+    <!-- MARKETPLACE / BUYER FLOW -->
+    <section id="marketplace" class="tab-panel">
+      <div class="card">
+        <h2>Open Listings</h2>
+        <button id="refreshListingsBtn" class="btn-secondary">Refresh</button>
+        <div id="listingsContainer" class="listings-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bid modal -->
+  <div id="bidModal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="bidModalTitle">Place a Bid</h3>
+      <form id="bidForm">
+        <input type="hidden" id="bidListingId" />
+        <label>Your Name
+          <input type="text" id="buyerName" required placeholder="e.g. Sunrise Wholesalers" />
+        </label>
+        <label>Bid Amount (₹/quintal)
+          <input type="number" id="bidAmount" min="1" required />
+        </label>
+        <label>Message (optional)
+          <input type="text" id="bidMessage" placeholder="e.g. Can pick up within 2 days" />
+        </label>
+        <div class="modal-actions">
+          <button type="button" id="closeBidModal" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Submit Bid</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>SIH26132 · Team AGRIVISION · Prototype for demonstration — mandi price data is simulated.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
