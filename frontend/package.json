@@ -7,6 +7,6 @@
     "node": "24.x"
   },
   "scripts": {
-    "build": "echo \"No build step required\""
+    "build": "mkdir -p dist && cp -r index.html css js dist/ || true"
   }
 }
