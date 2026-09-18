@@ -63,7 +63,7 @@ function serveStatic(req, res, pathname) {
   });
 }
 
-const server = http.createServer(async (req, res) => {
+const requestHandler = async (req, res) => {
   const parsed = url.parse(req.url, true);
   const { pathname, query } = parsed;
 
@@ -200,8 +200,14 @@ const server = http.createServer(async (req, res) => {
     console.error(err);
     return sendJson(res, 500, { error: "Internal server error" });
   }
-});
+};
 
-server.listen(PORT, () => {
-  console.log(`FarmBridge server running at http://localhost:${PORT}`);
-});
+const server = http.createServer(requestHandler);
+
+if (require.main === module) {
+  server.listen(PORT, () => {
+    console.log(`FarmBridge server running at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = requestHandler;
